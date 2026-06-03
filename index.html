@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>000 ❤️ 000의 결혼식에 초대합니다</title>
+
+    <meta property="og:title" content="000 ❤️ 000 결혼합니다">
+    <meta property="og:description" content="2026년 12월 31일, 저희의 시작을 함께 축하해 주세요.">
+    <meta property="og:image" content="photophoto.jpg">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@5.4.3/dist/photoswipe.css" />
+
+    <style>
+        /* 폰트 정의: 카페24 동동 */
+        @font-face {
+            font-family: 'Cafe24Dongdong';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Dongdong.woff') format('woff');
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cafe24Dongdong', sans-serif;
+        }
+
+        body {
+            background-color: #f7f4f0;
+            color: #52403c; /* 깊이감 있는 감성 로즈 코코아 브라운 */
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 450px;
+            background-color: #ffffff;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(140, 120, 110, 0.06);
+        }
+
+        @media screen and (min-width: 768px) {
+            body { padding: 50px 0; }
+            .container { border-radius: 24px; }
+        }
+
+        #confetti-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 999;
+            pointer-events: none;
+        }
+
+        section {
+            padding: 50px 24px;
+        }
+
+        /* 메인 섹션 */
+        .main-sec { padding: 60px 24px 40px 24px; }
+
+        /* 타이핑 효과 스타일 */
+        .main-title-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 3.5rem;
+            margin-bottom: 25px;
+        }
+        .main-title {
+            font-size: 2.3rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: #d98b82; /* 분위기 있는 웜 테라코타 로즈 */
+            text-shadow: 1px 1px 3px rgba(217, 139, 130, 0.15);
+        }
+        .cursor {
+            width: 3px;
+            height: 2.3rem;
+            background-color: #d98b82;
+            margin-left: 5px;
+            animation: blink 0.8s step-end infinite;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        .main-img { width: 100%; border-radius: 16px; margin: 15px 0 25px 0; box-shadow: 0 6px 20px rgba(0,0,0,0.03); }
+        .main-names { font-size: 2.1rem; color: #52403c; font-weight: bold; }
+        .main-info { font-size: 1.25rem; color: #8c7a70; margin-top: 15px; line-height: 1.6; }
+
+        /* 디데이 타이머 */
+        .dday-sec {
+            padding: 24px 20px; margin: 0 24px 30px 24px;
+            background-color: #faf6f2; border-radius: 16px; border: 1px dashed #decbc0;
+        }
+        .dday-title { font-size: 1.1rem; color: #8c7a70; margin-bottom: 15px; font-weight: bold; }
+        .dday-timer { display: flex; justify-content: center; gap: 20px; }
+        .timer-item { display: flex; flex-direction: column; align-items: center; }
+        .timer-num { font-size: 1.7rem; color: #52403c; font-weight: bold; }
+        .timer-label { font-size: 0.85rem; color: #decbc0; margin-top: 4px; }
+
+        /* 초대말 섹션 */
+        .intro-sec { background-color: #faf6f2; line-height: 2; font-size: 1.25rem; border-radius: 20px; margin: 0 24px; padding: 45px 20px; color: #665b53; }
+        .intro-title { font-size: 1.5rem; color: #8c7a70; margin-bottom: 25px; font-weight: bold; letter-spacing: 1px; }
+
+        /* ✍️ 가족 관계 및 구분점 명확화 스타일 */
+        .family-info-container {
+            margin-top: 35px;
+            padding-top: 25px;
+            border-top: 1px dashed #ebdcd0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            text-align: center;
+        }
+        .family-line {
+            font-size: 1.25rem;
+            color: #70635c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .family-parents {
+            font-weight: bold;
+            color: #52403c;
+        }
+        /* 가동점 전용 폰트 강제 및 따뜻한 포인트 컬러 부여 */
+        .family-dot {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+            font-size: 1.1rem;
+            color: #52403c;
+            margin: 0 8px;
+            vertical-align: middle;
+            font-weight: bold;
+        }
+        .family-relation {
+            color: #8c7a70;
+            font-size: 1.1rem;
+            margin: 0 10px 0 6px;
+        }
+        .family-child {
+            font-size: 1.35rem;
+            font-weight: bold;
+            color: #52403c;
+        }
+
+        /* 📅 달력 섹션 */
+        .calendar-sec { padding: 50px 24px; }
+        .calendar-title { font-size: 1.4rem; color: #52403c; margin-bottom: 25px; letter-spacing: 2px; font-weight: bold; }
+        .calendar-table { width: 100%; max-width: 320px; margin: 0 auto; border-collapse: collapse; font-size: 1.1rem; }
+        .calendar-table th, .calendar-table td { width: 14.28%; padding: 12px 0; text-align: center; }
+        .calendar-table th { font-weight: bold; font-size: 0.95rem; padding-bottom: 15px; color: #8c7a70; }
+        .calendar-table td { color: #52403c; }
+        .calendar-table .sun { color: #d69696; }
+        .calendar-table .sat { color: #96b2d6; }
+        .calendar-table .other-month { color: #e3deda; }
+        .calendar-table .wedding-day {
+            background-color: #d98b82; color: white !important; font-weight: bold; border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(217, 139, 130, 0.4);
+        }
+
+        /* 📸 갤러리 */
+        .gallery-sec { padding: 50px 24px; }
+        .gallery-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 20px;
+        }
+        .gallery-grid a {
+            display: block; width: 100%; aspect-ratio: 1 / 1; overflow: hidden; border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+        .gallery-grid img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* 📍 오시는 길 */
+        .map-sec { padding: 50px 24px; }
+        .map-static-img { width: 100%; border-radius: 16px; margin: 20px 0; box-shadow: 0 6px 20px rgba(0,0,0,0.03); }
+        .map-btn-container { display: flex; justify-content: space-between; gap: 12px; margin-top: 10px; }
+        .map-nav-btn {
+            flex: 1; padding: 14px; font-size: 1.1rem; border-radius: 12px;
+            border: 1px solid #ebdcd0; background-color: white; color: #52403c; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: bold;
+        }
+
+        /* 🚌 버스 정보 */
+        .transport-info {
+            text-align: left; background-color: #faf6f2; border-radius: 16px;
+            padding: 28px 24px; margin-top: 30px; line-height: 1.75; color: #665b53;
+        }
+        .transport-item { margin-bottom: 22px; }
+        .transport-label { font-size: 1.15rem; font-weight: bold; color: #8c7a70; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+        .transport-desc { font-size: 1.05rem; color: #52403c; padding-left: 2px; }
+
+        .bank-sec { background-color: #faf6f2; border-radius: 20px; margin: 0 24px 40px 24px; padding: 45px 20px; }
+        .bank-btn {
+            background-color: #d98b82; color: white; border: none; padding: 15px 24px;
+            font-size: 1.2rem; border-radius: 30px; cursor: pointer; margin-top: 15px; width: 90%;
+            font-weight: bold; box-shadow: 0 4px 12px rgba(217, 139, 130, 0.25);
+        }
+
+        hr { border: 0; height: 1px; background: #ebdcd0; margin: 0 30px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <canvas id="confetti-canvas"></canvas>
+
+    <section class="main-sec">
+        <div class="main-title-container">
+            <div class="main-title" id="typing-title"></div>
+            <div class="cursor" id="cursor-bar"></div>
+        </div>
+
+        <img src="photophoto.jpg" alt="웨딩 메인 사진" class="main-img">
+        <div class="main-names">홍길동 <span style="font-size:1.4rem; color:#ebdcd0; font-weight: normal;">&</span> 성춘향</div>
+        <div class="main-info">
+            2026년 12월 31일 수요일 오전 11시<br>
+            노블발렌티 삼성점
+        </div>
+    </section>
+
+    <div class="dday-sec">
+        <div class="dday-title" id="dday-message">식장 입장까지 남은 시간 💍</div>
+        <div class="dday-timer" id="wedding-timer">
+            <div class="timer-item"><span class="timer-num" id="days">00</span><span class="timer-label">일</span></div>
+            <div class="timer-item"><span class="timer-num" id="hours">00</span><span class="timer-label">시</span></div>
+            <div class="timer-item"><span class="timer-num" id="minutes">00</span><span class="timer-label">분</span></div>
+            <div class="timer-item"><span class="timer-num" id="seconds">00</span><span class="timer-label">초</span></div>
+        </div>
+    </div>
+
+    <hr>
+
+    <section class="intro-sec">
+        <div class="intro-title">소중한 분들을 초대합니다</div>
+        <p>
+            서로가 마주보며 다져온 사랑을<br>
+            이제 함께 같은 곳을 바라보며<br>
+            걸어가고자 합니다.<br><br>
+            저희의 뜻깊은 출발의 자리에<br>
+            오셔서 축복해 주시면<br>
+            더없는 기쁨으로 간직하겠습니다.
+        </p>
+
+        <!-- ✍️ 부모님 성함 및 호칭 구분점을 한결 눈에 띄고 고급스럽게 가공한 부분입니다 -->
+        <div class="family-info-container">
+            <div class="family-line">
+                <span class="family-parents">구자철<span class="family-dot">·</span>한가인</span>
+                <span class="family-relation">의 장남</span>
+                <span class="family-child">길동</span>
+            </div>
+            <div class="family-line">
+                <span class="family-parents">성춘향<span class="family-dot">·</span>이몽룡</span>
+                <span class="family-relation">의 장녀</span>
+                <span class="family-child">춘향</span>
+            </div>
+        </div>
+    </section>
+
+    <hr>
+
+    <section class="calendar-sec">
+        <div class="calendar-title">2026 . 12</div>
+        <table class="calendar-table">
+            <thead>
+                <tr>
+                    <th class="sun">일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th class="sat">토</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td class="sun other-month">29</td><td class="other-month">30</td><td>1</td><td>2</td><td>3</td><td>4</td><td class="sat">5</td></tr>
+                <tr><td class="sun">6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td class="sat">12</td></tr>
+                <tr><td class="sun">13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td class="sat">19</td></tr>
+                <tr><td class="sun">20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td class="sat">26</td></tr>
+                <tr><td class="sun">27</td><td>28</td><td>29</td><td>30</td><td class="wedding-day">31</td><td class="other-month">1</td><td class="sat other-month">2</td></tr>
+            </tbody>
+        </table>
+        <p style="font-size: 1.1rem; color: #8c7a70; margin-top: 25px; font-weight: bold;">12월의 마지막 날, 오전 11시에 만나요 🤍</p>
+    </section>
+
+    <hr>
+
+    <section class="gallery-sec">
+        <div class="intro-title">우리의 예쁜 순간들 📸</div>
+        <div class="gallery-grid" id="wedding-gallery">
+            <a href="photophoto.jpg" data-pswp-width="1200" data-pswp-height="1800" target="_blank"><img src="photophoto.jpg" alt="사진1"></a>
+            <a href="photophoto.jpg" data-pswp-width="1200" data-pswp-height="1800" target="_blank"><img src="photophoto.jpg" alt="사진2"></a>
+            <a href="photophoto.jpg" data-pswp-width="1200" data-pswp-height="1800" target="_blank"><img src="photophoto.jpg" alt="사진3"></a>
+            <a href="photophoto.jpg" data-pswp-width="1200" data-pswp-height="1800" target="_blank"><img src="photophoto.jpg" alt="사진4"></a>
+            <a href="photophoto.jpg" data-pswp-width="1200" data-pswp-height="1800" target="_blank"><img src="photophoto.jpg" alt="사진5"></a>
+            <a href="photophoto.jpg" data-pswp-width="1200" data-pswp-height="1800" target="_blank"><img src="photophoto.jpg" alt="사진6"></a>
+            <a href="photophoto.jpg" data-pswp-width="1200" data-pswp-height="1800" target="_blank"><img src="photophoto.jpg" alt="사진7"></a>
+            <a href="photophoto.jpg" data-pswp-width="1200" data-pswp-height="1800" target="_blank"><img src="photophoto.jpg" alt="사진8"></a>
+            <a href="photophoto.jpg" data-pswp-width="1200" data-pswp-height="1800" target="_blank"><img src="photophoto.jpg" alt="사진9"></a>
+        </div>
+    </section>
+
+    <hr>
+
+    <section class="map-sec">
+        <div class="intro-title">오시는 길 📍</div>
+        <p style="font-size: 1.3rem; font-weight: bold; color: #52403c;">노블발렌티 삼성점</p>
+        <p style="font-size:1.1rem; color:#8c7a70; margin-top:5px;">서울 강남구 영동대로112길 46</p>
+        <img src="photophoto.jpg" alt="식장 약도" class="map-static-img">
+        <div class="map-btn-container">
+            <button class="map-nav-btn" onclick="window.open('https://naver.me/5uIYZdsZ')"><span style="color:#2db400;">N</span> 네이버 지도</button>
+            <button class="map-nav-btn" onclick="window.open('https://kko.to/O-q_E2bZ3K')"><span style="color:#f9e000;">K</span> 카카오 맵</button>
+        </div>
+
+        <div class="transport-info">
+            <div class="transport-item">
+                <div class="transport-label">🚇 지하철 안내</div>
+                <div class="transport-desc">
+                    <b style="color: #52403c;">[2호선 삼성역]</b> 7번 출구 도보 10분<br>
+                    <b style="color: #52403c;">[9호선 봉은사역]</b> 2번 출구 도보 5분
+                </div>
+            </div>
+            <div class="transport-item">
+                <div class="transport-label">🚌 버스 안내</div>
+                <div class="transport-desc">
+                    '봉은사역.COEX' 또는 '강남경찰서' 하차<br>
+                    간선: 143, 301, 351, 401<br>
+                    지선: 2415, 3217, 3411, 4318
+                </div>
+            </div>
+            <div class="transport-item">
+                <div class="transport-label">🚗 주차 안내</div>
+                <div class="transport-desc">
+                    식장 내 <b style="color: #52403c;">하객 무료 주차 2시간</b> 제공됩니다.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr>
+
+    <section class="bank-sec">
+        <div class="intro-title">마음 전하실 곳 💌</div>
+        <button class="bank-btn" onclick="copyAccount('국민은행 123456-01-123456 (홍길동)')">신랑측 계좌번호 복사</button>
+        <button class="bank-btn" onclick="copyAccount('신한은행 987654-32-109876 (성춘향)')" style="background-color: #ebdcd0; color: #52403c; box-shadow: 0 4px 12px rgba(235, 220, 208, 0.4);">신부측 계좌번호 복사</button>
+    </section>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script type="module">
+    import PhotoSwipeLightbox from 'https://cdn.jsdelivr.net/npm/photoswipe@5.4.3/dist/photoswipe-lightbox.esm.js';
+    const lightbox = new PhotoSwipeLightbox({
+        gallery: '#wedding-gallery',
+        children: 'a',
+        pswpModule: () => import('https://cdn.jsdelivr.net/npm/photoswipe@5.4.3/dist/photoswipe.esm.js')
+    });
+    lightbox.init();
+</script>
+
+<script>
+    window.onload = function() {
+        // 콘페티
+        const canvas = document.getElementById('confetti-canvas');
+        const myConfetti = confetti.create(canvas, { resize: true });
+        const elegantColors = ['#e8dfd8', '#f3eae1', '#ffffff', '#faeedb', '#f5eee6'];
+        myConfetti({ particleCount: 40, spread: 60, origin: { y: 0.1 }, colors: elegantColors, gravity: 0.6, scalar: 0.7 });
+        (function frame() {
+            myConfetti({
+                particleCount: 1, angle: 90, spread: 90, origin: { x: Math.random(), y: 0 },
+                colors: [elegantColors[Math.floor(Math.random() * elegantColors.length)]],
+                gravity: 0.45, ticks: 400
+            });
+            requestAnimationFrame(frame);
+        }());
+
+        // 타이핑 애니메이션
+        const titleEl = document.getElementById('typing-title');
+        const cursorEl = document.getElementById('cursor-bar');
+        const text = "우리 결혼합니다 💕";
+        let index = 0;
+
+        function type() {
+            if (index < text.length) {
+                titleEl.textContent += text.charAt(index);
+                index++;
+                setTimeout(type, 180);
+            } else {
+                setTimeout(() => {
+                    cursorEl.style.transition = "opacity 1s";
+                    cursorEl.style.opacity = "0";
+                }, 3000);
+            }
+        }
+        titleEl.textContent = "";
+        setTimeout(type, 800);
+    };
+
+    // 디데이
+    const targetDate = new Date("2026-12-31T11:00:00+09:00").getTime();
+    setInterval(function() {
+        const now = new Date().getTime();
+        const diff = targetDate - now;
+        if (diff < 0) return;
+        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((diff % (1000 * 60)) / 1000);
+        document.getElementById("days").innerText = String(d).padStart(2, '0');
+        document.getElementById("hours").innerText = String(h).padStart(2, '0');
+        document.getElementById("minutes").innerText = String(m).padStart(2, '0');
+        document.getElementById("seconds").innerText = String(s).padStart(2, '0');
+    }, 1000);
+
+    function copyAccount(acc) {
+        navigator.clipboard.writeText(acc).then(() => { alert("계좌번호가 복사되었습니다!\n" + acc); });
+    }
+</script>
+</body>
+</html>
